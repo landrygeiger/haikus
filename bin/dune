@@ -1,4 +1,4 @@
 (executable
  (public_name haikus)
  (name main)
- (libraries haikus))
+ (libraries haikus dotenv))

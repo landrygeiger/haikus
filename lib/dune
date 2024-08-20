@@ -1,2 +1,3 @@
 (library
- (name haikus))
+ (name haikus)
+ (libraries cohttp-lwt-unix yojson))
