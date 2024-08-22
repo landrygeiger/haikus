@@ -2,11 +2,14 @@ open Lwt.Infix
 
 let base_url = "https://api.groupme.com/v3"
 
+let make_authenticated_route_url ~base_url ~path ~api_token =
+  Rest.concat_query_param ~param:"token" ~value:api_token (base_url ^ path)
+
 module Group = struct
   type t = { id : string; name : string }
 
   let make_url api_token =
-    Rest.make_authenticated_route_url ~base_url ~path:"/groups" ~api_token
+    make_authenticated_route_url ~base_url ~path:"/groups" ~api_token
 
   let from_json json_group =
     let open Yojson.Basic.Util in
@@ -30,7 +33,7 @@ module Message = struct
   let make_url ~api_token ~group_id ~limit ~before_id =
     let base_path = "/groups/" ^ group_id ^ "/messages" in
     let limit = Int.to_string limit in
-    Rest.make_authenticated_route_url ~base_url ~path:base_path ~api_token
+    make_authenticated_route_url ~base_url ~path:base_path ~api_token
     |> Rest.concat_query_param ~param:"limit" ~value:limit
     |>
     match before_id with
