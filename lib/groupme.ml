@@ -1,12 +1,30 @@
 open Lwt.Infix
 
-type group = { id : string; name : string }
 type message = { id : string; name : string; text : string; user_id : string }
 
 let base_url = "https://api.groupme.com/v3"
 
-let make_groups_url api_token =
-  Rest.make_authenticated_route_url ~base_url ~path:"/groups" ~api_token
+module Group = struct
+  type t = { id : string; name : string }
+
+  let make_url api_token =
+    Rest.make_authenticated_route_url ~base_url ~path:"/groups" ~api_token
+
+  let from_json json_group =
+    let open Yojson.Basic.Util in
+    let id = json_group |> member "id" |> to_string in
+    let name = json_group |> member "name" |> to_string in
+    { id; name }
+
+  let from_body body =
+    let open Yojson.Basic.Util in
+    body |> Cohttp_lwt.Body.to_string >|= Yojson.Basic.from_string
+    >|= member "response" >|= to_list >|= List.map from_json
+
+  let fetch_active ~api_token =
+    let groups_url = make_url api_token in
+    Rest.send_request groups_url >|= snd >>= from_body
+end
 
 let make_messages_url ~api_token ~group_id ~limit ~before_id =
   let base_path = "/groups/" ^ group_id ^ "/messages" in
@@ -18,21 +36,6 @@ let make_messages_url ~api_token ~group_id ~limit ~before_id =
   | Some before_id ->
       Rest.concat_query_param ~param:"before_id" ~value:before_id
   | None -> fun x -> x
-
-let parse_json_group json_group =
-  let open Yojson.Basic.Util in
-  let id = json_group |> member "id" |> to_string in
-  let name = json_group |> member "name" |> to_string in
-  { id; name }
-
-let get_groups_from_body body =
-  let open Yojson.Basic.Util in
-  body |> Cohttp_lwt.Body.to_string >|= Yojson.Basic.from_string
-  >|= member "response" >|= to_list >|= List.map parse_json_group
-
-let fetch_active_groups ~api_token =
-  let groups_url = make_groups_url api_token in
-  Rest.send_request groups_url >|= snd >>= get_groups_from_body
 
 let parse_json_message json_message =
   let open Yojson.Basic.Util in
