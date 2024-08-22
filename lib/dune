@@ -1,4 +1,4 @@
 (library
  (name haikus)
- (libraries cohttp-lwt-unix yojson lwt_ppx)
+ (libraries cohttp-lwt-unix yojson lwt_ppx str)
  (preprocess (pps lwt_ppx)))
