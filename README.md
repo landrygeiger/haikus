@@ -1,6 +1,6 @@
 # Haikus
 
-List all messages in a Groupme group that are haikus.
+List all messages in a GroupMe group that are haikus.
 
 > **Haiku**, unrhymed poetic form consisting of 17 syllables arranged in three lines of 5, 7, and 5 syllables respectively. The haiku first emerged in Japanese literature during the 17th century, as a terse reaction to elaborate poetic traditions, though it did not become known by the name haiku until the 19th century.
 
@@ -12,7 +12,7 @@ You'll need an OCaml installing along with dune. `cohttp-lwt-unix`, `ppx_lwt`, a
 
 1. Clone the repo
 
-2. Create a `.env` file with your Groupme API token. If you don't have an API token, you can obtain one for your Groupme account [here](https://dev.groupme.com/).
+2. Create a `.env` file with your GroupMe API token. If you don't have an API token, you can obtain one for your GroupMe account [here](https://dev.groupme.com/).
 
 ```
 GROUPME_API_TOKEN=[your_token_here]
