@@ -1,4 +1,5 @@
 (executable
  (public_name haikus)
  (name main)
- (libraries haikus dotenv))
+ (libraries haikus dotenv)
+ (preprocess (pps lwt_ppx)))

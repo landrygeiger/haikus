@@ -1,6 +1,7 @@
 module Group : sig
   type t = { id : string; name : string }
 
+  val to_string : t -> string
   val from_json : Yojson.Basic.t -> t
   val all_from_body : Cohttp_lwt.Body.t -> t list Lwt.t
   val fetch_active : api_token:string -> t list Lwt.t

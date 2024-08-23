@@ -8,6 +8,8 @@ let make_authenticated_route_url ~base_url ~path ~api_token =
 module Group = struct
   type t = { id : string; name : string }
 
+  let to_string group = group.name ^ ": " ^ group.id
+
   let make_url api_token =
     make_authenticated_route_url ~base_url ~path:"/groups" ~api_token
 
