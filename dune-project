@@ -13,12 +13,10 @@
 
 (license LICENSE)
 
-(documentation https://url/to/documentation)
-
 (package
  (name haikus)
- (synopsis "Run a report on haiku usage in a GroupMe chat")
- (description "This is a tool to run a report on haiku usage in a GroupMe chat.")
+ (synopsis "Find all haikus in a Groupme chat")
+ (description "This is a script to pull all messages for a Groupme chat and analyze their syllable use to identify haikus")
  (depends ocaml dune)
  (tags
   (topics "to describe" your project)))

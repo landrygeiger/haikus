@@ -13,7 +13,9 @@ let fetch_haikus ~api_token ~group_id =
   |> List.map (fun text ->
          (text, Haikus.Dictionary.Syllable.total_for_text syllable_table text))
   |> List.filter (fun (_, syllables) -> syllables = 17)
-  |> List.map fst |> Lwt.return
+  |> List.map fst
+  |> List.map (fun s -> s ^ "\n")
+  |> Lwt.return
 
 let () =
   Dotenv.export ();

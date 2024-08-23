@@ -2,11 +2,11 @@
 opam-version: "2.0"
 synopsis: "Run a report on haiku usage in a GroupMe chat"
 description:
-  "This is a tool to run a report on haiku usage in a GroupMe chat."
+  "This is a script to pull all messages for a Groupme chat and analyze their syllable use to identify haikus"
 maintainer: ["Landry Geiger"]
 authors: ["Landry Geiger"]
 license: "LICENSE"
-tags: ["topics" "to describe" "your" "project"]
+tags: []
 homepage: "https://github.com/landrygeiger/haikus"
 doc: "https://url/to/documentation"
 bug-reports: "https://github.com/landrygeiger/haikus/issues"
