@@ -53,4 +53,4 @@ Elegant code flows, pure functions without side effects, functional bliss reigns
 
 ## Syllables Database
 
-The plain text list of syllables was obtained from "Moby Hyphenation List" by Grady Ward on [Project Gutenberg](https://www.gutenberg.org/ebooks/3204). This list was further processed by replacing the original syllable delimiters with spaces.
+The plain text list of syllables was obtained from "Moby Hyphenation List" by Grady Ward on [Project Gutenberg](https://www.gutenberg.org/ebooks/3204). This list was further processed by replacing the original syllable delimiters with spaces. Despite containing over 60,000 words, there are still quite a few missing, common words. A potential solution would be to use a dictionary API to fetch the syllabic breakdown of missing words and cache the result. See [this](https://github.com/landrygeiger/haikus/issues/1) issue.
